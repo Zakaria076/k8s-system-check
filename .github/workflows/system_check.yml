@@ -25,7 +25,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y python3-pip
         pip3 install kube-hunter
-        sudo apt-get install -y trivy
+        wget https://github.com/aquasecurity/trivy/releases/download/v0.30.0/trivy_0.30.0_Linux-64bit.deb
+        sudo dpkg -i trivy_0.30.0_Linux-64bit.deb
 
     - name: Run system check
       run: python system_check.py
@@ -37,3 +38,4 @@ jobs:
         git add reports/
         git commit -m 'Add latest system check report'
         git push
+
