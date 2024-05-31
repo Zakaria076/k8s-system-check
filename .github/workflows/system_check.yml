@@ -40,4 +40,3 @@ jobs:
         git add reports/
         git commit -m 'Add latest system check report'
         git push https://Zakaria076:${{ secrets.GH_TOKEN }}@github.com/Zakaria076/k8s-system-check.git
-
