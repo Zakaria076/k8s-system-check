@@ -1,0 +1,98 @@
+
+    Kubernetes Cluster Status Report
+    ================================
+    Date: 2024-05-31 02:32:57
+    
+    Nodes:
+    NAME                     STATUS   ROLES           AGE     VERSION
+k8smaster.example.net    Ready    control-plane   3d12h   v1.28.10
+k8sworker1.example.net   Ready    <none>          3d10h   v1.28.10
+k8sworker2.example.net   Ready    <none>          3d10h   v1.28.10
+
+    Pods:
+    NAMESPACE     NAME                                            READY   STATUS    RESTARTS         AGE
+default       nginx-app-5777b5f95-5tsjd                       1/1     Running   0                3d9h
+default       nginx-app-5777b5f95-fffjx                       1/1     Running   0                3d9h
+kube-system   calico-kube-controllers-74d5f9d7bb-gv9dc        1/1     Running   18 (11m ago)     3d10h
+kube-system   calico-node-lwgjt                               1/1     Running   0                3d10h
+kube-system   calico-node-q2nx6                               1/1     Running   0                3d10h
+kube-system   calico-node-rr65t                               1/1     Running   1 (2d19h ago)    3d10h
+kube-system   coredns-5dd5756b68-ctjcx                        1/1     Running   0                3d12h
+kube-system   coredns-5dd5756b68-qk2c9                        1/1     Running   0                3d12h
+kube-system   etcd-k8smaster.example.net                      1/1     Running   0                3d12h
+kube-system   kube-apiserver-k8smaster.example.net            1/1     Running   4 (2d14h ago)    3d12h
+kube-system   kube-controller-manager-k8smaster.example.net   1/1     Running   54 (2d14h ago)   3d12h
+kube-system   kube-proxy-2vswh                                1/1     Running   0                3d10h
+kube-system   kube-proxy-6p4vb                                1/1     Running   0                3d10h
+kube-system   kube-proxy-q425z                                1/1     Running   0                3d12h
+kube-system   kube-scheduler-k8smaster.example.net            1/1     Running   53 (12m ago)     3d12h
+
+    System Information:
+    -------------------
+    CPU Info:
+    Architecture:                       x86_64
+CPU op-mode(s):                     32-bit, 64-bit
+Address sizes:                      45 bits physical, 48 bits virtual
+Byte Order:                         Little Endian
+CPU(s):                             2
+On-line CPU(s) list:                0,1
+Vendor ID:                          GenuineIntel
+Model name:                         Intel(R) Xeon(R) Gold 6430
+CPU family:                         6
+Model:                              143
+Thread(s) per core:                 1
+Core(s) per socket:                 2
+Socket(s):                          1
+Stepping:                           8
+BogoMIPS:                           4199.99
+Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx_vnni avx512_bf16 wbnoinvd arat avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid cldemote movdiri movdir64b fsrm md_clear serialize amx_bf16 avx512_fp16 amx_tile amx_int8 flush_l1d arch_capabilities
+Hypervisor vendor:                  VMware
+Virtualization type:                full
+L1d cache:                          96 KiB (2 instances)
+L1i cache:                          64 KiB (2 instances)
+L2 cache:                           4 MiB (2 instances)
+L3 cache:                           60 MiB (1 instance)
+NUMA node(s):                       1
+NUMA node0 CPU(s):                  0,1
+Vulnerability Gather data sampling: Not affected
+Vulnerability Itlb multihit:        KVM: Mitigation: VMX unsupported
+Vulnerability L1tf:                 Not affected
+Vulnerability Mds:                  Not affected
+Vulnerability Meltdown:             Not affected
+Vulnerability Mmio stale data:      Unknown: No mitigations
+Vulnerability Retbleed:             Not affected
+Vulnerability Spec rstack overflow: Not affected
+Vulnerability Spec store bypass:    Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:           Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:           Mitigation; Enhanced / Automatic IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence
+Vulnerability Srbds:                Not affected
+Vulnerability Tsx async abort:      Not affected
+
+    Memory Info:
+    total        used        free      shared  buff/cache   available
+Mem:           3,8Gi       2,8Gi       308Mi        58Mi       781Mi       748Mi
+Swap:             0B          0B          0B
+
+    Disk Info:
+    Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           391M  2,9M  388M   1% /run
+/dev/sda3        31G   16G   15G  52% /
+tmpfs           2,0G     0  2,0G   0% /dev/shm
+tmpfs           5,0M     0  5,0M   0% /run/lock
+/dev/sda2       512M  6,1M  506M   2% /boot/efi
+tmpfs           391M  3,9M  387M   1% /run/user/1000
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/8deb3b8a06173c305a31cbc97a7ca466b963213d36dd98e753abff5d337ea0f6/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f705f8a268298e28bc43e9b6fe61350564dde5a7809feab7c9f7d88d10d92ec4/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/a767c42398df32390c56026ef0727b508a6d922be59cee22f7ebe9057af38a8a/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/01b3c878e61f394f0f1a8cb1ee2c622135d4b23ff0d5182ddb11e086e91a6c94/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/3e450feca94cb2fee6b27ec1a3f2c4a869c7c12c1cc8b2d79bf277165408707f/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f1bdb2210e4722524f46f44ee058ea2099fdea75236291533094bc980329f2f9/shm
+
+    Vulnerability Scan Reports:
+    ---------------------------
+    Kube Hunter Report:
+    
+
+    Trivy Report:
+    
+    
