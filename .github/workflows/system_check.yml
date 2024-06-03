@@ -31,12 +31,15 @@ jobs:
     - name: Run system check
       run: python system_check.py
 
+    - name: Configure Git
+      run: |
+        git config user.name 'github-actions'
+        git config user.email 'github-actions@github.com'
+
     - name: Push results
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        git config user.name 'github-actions'
-        git config user.email 'github-actions@github.com'
         git add reports/
         git commit -m 'Add latest system check report'
         git push https://Zakaria076:${{ secrets.GH_TOKEN }}@github.com/Zakaria076/k8s-system-check.git
