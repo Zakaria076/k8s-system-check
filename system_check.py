@@ -1,85 +1,32 @@
-#!/usr/bin/env python3
-
-import subprocess
 import os
 import datetime
+import subprocess
 
-def run_command(command):
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    return result.stdout.strip()
+def run_system_checks():
+    # Controleer systeeminformatie
+    system_info = subprocess.check_output(['uname', '-a']).decode('utf-8')
 
-def get_k8s_status():
-    nodes = run_command("kubectl get nodes")
-    pods = run_command("kubectl get pods --all-namespaces")
-    return nodes, pods
+    # Voer een vulnerability scan uit met trivy
+    trivy_scan = subprocess.check_output(['trivy', 'filesystem', '/']).decode('utf-8')
 
-def get_system_info():
-    cpu_info = run_command("lscpu")
-    memory_info = run_command("free -h")
-    disk_info = run_command("df -h")
-    return cpu_info, memory_info, disk_info
+    # Voer een vulnerability scan uit met kube-hunter
+    kube_hunter_scan = subprocess.check_output(['kube-hunter', '--report', 'json']).decode('utf-8')
 
-def run_kube_hunter():
-    return run_command("kube-hunter --report plain")
+    # Genereer rapport
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    report_filename = f"report_{timestamp}.txt"
+    report_path = os.path.join("reports", report_filename)
 
-def run_trivy():
-    return run_command("trivy image --format table --no-progress k8s.gcr.io/pause:3.2")
+    with open(report_path, 'w') as report_file:
+        report_file.write("System Information:\n")
+        report_file.write(system_info + "\n")
+        report_file.write("Trivy Scan Results:\n")
+        report_file.write(trivy_scan + "\n")
+        report_file.write("Kube-hunter Scan Results:\n")
+        report_file.write(kube_hunter_scan + "\n")
 
-def generate_report():
-    nodes, pods = get_k8s_status()
-    cpu_info, memory_info, disk_info = get_system_info()
-    kube_hunter_report = run_kube_hunter()
-    trivy_report = run_trivy()
-
-    report = f"""
-    Kubernetes Cluster Status Report
-    ================================
-    Date: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-    
-    Nodes:
-    {nodes}
-
-    Pods:
-    {pods}
-
-    System Information:
-    -------------------
-    CPU Info:
-    {cpu_info}
-
-    Memory Info:
-    {memory_info}
-
-    Disk Info:
-    {disk_info}
-
-    Vulnerability Scan Reports:
-    ---------------------------
-    Kube Hunter Report:
-    {kube_hunter_report}
-
-    Trivy Report:
-    {trivy_report}
-    """
-    return report
-
-def save_report(report):
-    report_dir = "reports"
-    os.makedirs(report_dir, exist_ok=True)
-    report_filename = os.path.join(report_dir, f"report_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt")
-    with open(report_filename, 'w') as f:
-        f.write(report)
-    print(f"Report saved to {report_filename}")
+    print(f"Report generated: {report_path}")
 
 if __name__ == "__main__":
-    report = generate_report()
-    save_report(report)
-    
-    #Typ iets#
-    
-    
-    
-    
-    
-    
-    
+    os.makedirs('reports', exist_ok=True)
+    run_system_checks()
