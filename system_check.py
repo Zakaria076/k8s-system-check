@@ -74,3 +74,5 @@ def save_report(report):
 if __name__ == "__main__":
     report = generate_report()
     save_report(report)
+    
+    #Typ iets#
