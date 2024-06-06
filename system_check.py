@@ -2,9 +2,12 @@ import subprocess
 import os
 import datetime
 
-def run_command(command):
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    return result.stdout.strip()
+def run_command(command, timeout=600):
+    try:
+        result = subprocess.run(command, shell=True, capture_output=True, text=True, timeout=timeout)
+        return result.stdout.strip()
+    except subprocess.TimeoutExpired:
+        return f"Command '{command}' timed out."
 
 def get_k8s_status():
     nodes = run_command("kubectl get nodes")
@@ -18,12 +21,10 @@ def get_system_info():
     return cpu_info, memory_info, disk_info
 
 def run_trivy_scan():
-    result = run_command("trivy filesystem / --no-progress")
-    return result
+    return run_command("trivy filesystem / --no-progress", timeout=300)
 
 def run_kube_hunter_scan():
-    result = run_command("kube-hunter --report json")
-    return result
+    return run_command("kube-hunter --report json", timeout=300)
 
 def generate_report():
     nodes, pods = get_k8s_status()
