@@ -35,4 +35,3 @@ jobs:
         git add reports/
         git commit -m 'Add latest system check report'
         git push
-#TypIets#
