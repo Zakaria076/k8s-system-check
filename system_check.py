@@ -17,9 +17,19 @@ def get_system_info():
     disk_info = run_command("df -h")
     return cpu_info, memory_info, disk_info
 
+def run_trivy_scan():
+    result = run_command("trivy filesystem / --no-progress")
+    return result
+
+def run_kube_hunter_scan():
+    result = run_command("kube-hunter --report json")
+    return result
+
 def generate_report():
     nodes, pods = get_k8s_status()
     cpu_info, memory_info, disk_info = get_system_info()
+    trivy_report = run_trivy_scan()
+    kube_hunter_report = run_kube_hunter_scan()
 
     report = f"""
     Kubernetes Cluster Status Report
@@ -45,7 +55,11 @@ def generate_report():
 
     Vulnerability Scan Reports:
     ---------------------------
-    (Include vulnerability scan outputs here)
+    Trivy Report:
+    {trivy_report}
+
+    Kube Hunter Report:
+    {kube_hunter_report}
     """
     return report
 
