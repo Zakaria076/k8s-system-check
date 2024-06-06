@@ -1,37 +1,44 @@
-name: System Check
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
-  schedule:
-    - cron: '*/10 * * * *'
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: |
-        pip install kube-hunter
-        sudo apt-get update && sudo apt-get install -y trivy
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
 
-    - name: Run system check
-      run: python system_check.py
+      - name: Lint code
+        run: |
+          pip install flake8
+          flake8 .
 
-    - name: Push results
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git add reports/
-        git commit -m 'Add latest system check report'
-        git push
+      - name: Run tests
+        run: |
+          pip install pytest
+          pytest
+
+      - name: Build application
+        run: |
+          echo "Add your build steps here"
+
+      - name: Deploy application
+        run: |
+          echo "Add your deploy steps here"
