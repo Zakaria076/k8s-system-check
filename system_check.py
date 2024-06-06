@@ -42,6 +42,10 @@ def generate_report():
 
     Disk Info:
     {disk_info}
+
+    Vulnerability Scan Reports:
+    ---------------------------
+    (Include vulnerability scan outputs here)
     """
     return report
 
