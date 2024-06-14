@@ -1,0 +1,94 @@
+
+    Kubernetes Cluster Status Report
+    ================================
+    Date: 2024-06-14 10:47:32
+    
+    Nodes:
+    NAME                     STATUS   ROLES           AGE   VERSION
+k8smaster.example.net    Ready    control-plane   17d   v1.28.10
+k8sworker1.example.net   Ready    <none>          17d   v1.28.10
+k8sworker2.example.net   Ready    <none>          17d   v1.28.10
+
+    Pods:
+    NAMESPACE     NAME                                            READY   STATUS    RESTARTS         AGE
+default       nginx-app-5777b5f95-5tsjd                       1/1     Running   0                17d
+default       nginx-app-5777b5f95-fffjx                       1/1     Running   0                17d
+kube-system   calico-kube-controllers-74d5f9d7bb-gv9dc        1/1     Running   27 (8d ago)      17d
+kube-system   calico-node-lwgjt                               1/1     Running   0                17d
+kube-system   calico-node-q2nx6                               1/1     Running   0                17d
+kube-system   calico-node-rr65t                               1/1     Running   2 (8d ago)       17d
+kube-system   coredns-5dd5756b68-ctjcx                        1/1     Running   0                17d
+kube-system   coredns-5dd5756b68-qk2c9                        1/1     Running   0                17d
+kube-system   etcd-k8smaster.example.net                      1/1     Running   1 (8d ago)       17d
+kube-system   kube-apiserver-k8smaster.example.net            1/1     Running   7 (8d ago)       17d
+kube-system   kube-controller-manager-k8smaster.example.net   1/1     Running   79 (5d10h ago)   17d
+kube-system   kube-proxy-2vswh                                1/1     Running   0                17d
+kube-system   kube-proxy-6p4vb                                1/1     Running   0                17d
+kube-system   kube-proxy-q425z                                1/1     Running   1 (8d ago)       17d
+kube-system   kube-scheduler-k8smaster.example.net            1/1     Running   80 (5d10h ago)   17d
+
+    System Information:
+    -------------------
+    CPU Info:
+    Architecture:                       x86_64
+CPU op-mode(s):                     32-bit, 64-bit
+Address sizes:                      45 bits physical, 48 bits virtual
+Byte Order:                         Little Endian
+CPU(s):                             6
+On-line CPU(s) list:                0-5
+Vendor ID:                          GenuineIntel
+Model name:                         Intel(R) Xeon(R) Gold 6430
+CPU family:                         6
+Model:                              143
+Thread(s) per core:                 1
+Core(s) per socket:                 6
+Socket(s):                          1
+Stepping:                           8
+BogoMIPS:                           4199.99
+Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx_vnni avx512_bf16 wbnoinvd arat avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid cldemote movdiri movdir64b fsrm md_clear serialize amx_bf16 avx512_fp16 amx_tile amx_int8 flush_l1d arch_capabilities
+Hypervisor vendor:                  VMware
+Virtualization type:                full
+L1d cache:                          288 KiB (6 instances)
+L1i cache:                          192 KiB (6 instances)
+L2 cache:                           12 MiB (6 instances)
+L3 cache:                           60 MiB (1 instance)
+NUMA node(s):                       1
+NUMA node0 CPU(s):                  0-5
+Vulnerability Gather data sampling: Not affected
+Vulnerability Itlb multihit:        KVM: Mitigation: VMX unsupported
+Vulnerability L1tf:                 Not affected
+Vulnerability Mds:                  Not affected
+Vulnerability Meltdown:             Not affected
+Vulnerability Mmio stale data:      Unknown: No mitigations
+Vulnerability Retbleed:             Not affected
+Vulnerability Spec rstack overflow: Not affected
+Vulnerability Spec store bypass:    Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:           Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:           Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                Not affected
+Vulnerability Tsx async abort:      Not affected
+
+    Memory Info:
+    total        used        free      shared  buff/cache   available
+Mem:            15Gi       4,6Gi       523Mi       278Mi        10Gi        10Gi
+Swap:             0B          0B          0B
+
+    Disk Info:
+    Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           1,6G  2,9M  1,6G   1% /run
+/dev/sda3        31G   19G   12G  63% /
+tmpfs           7,9G  214M  7,6G   3% /dev/shm
+tmpfs           5,0M     0  5,0M   0% /run/lock
+/dev/sda2       512M  6,1M  506M   2% /boot/efi
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/87141850b92c099338b4f2d929b948dd66c6f8cf3182c37eba0df708a0c3f009/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/bd655716c8c84ba80119735d78a9097642b2e19e9ca3cbc9487918ff4a429af9/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/9fca3c19340eb9187ccf98fbb010bd7929df8474022128566a811c5398b4ac70/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/707ba67ae843c93fa0c4129a8bc8b04679b78ab710939af63b7cf2e4890bf6b5/shm
+tmpfs           1,6G  148K  1,6G   1% /run/user/1000
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/9e67cf0e5a30e4e72865c4fb341a90c28404a0f5cfebd3624b6446306e2a6956/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/d61418c8d7f4798333d8cda9ed71b941aeae542d3a132072e852b51ed60e137d/shm
+
+    Vulnerability Scan Reports:
+    ---------------------------
+    (Include vulnerability scan outputs here)
+    
